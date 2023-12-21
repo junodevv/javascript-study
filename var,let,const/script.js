@@ -30,7 +30,7 @@ console.log(greeting3);
 /* 변수의 참조 범위 실습 */
 //////////////////////
 
-// var = 함수레벨 스코프
+// var => 함수레벨 스코프
 function func(){
     if(true){
         var a = 'a';
@@ -55,3 +55,19 @@ function func2(){
 }
 
 func2();
+
+////////////////
+/* 호이스팅 실습 */
+////////////////
+
+/**
+console.log(hello);
+var hello = 'hello'; // undefined
+let hello = 'hello'; // error
+ */
+
+funcHoisting(); // hoisting test
+
+function funcHoisting(){
+    console.log("hoisting test");
+}
