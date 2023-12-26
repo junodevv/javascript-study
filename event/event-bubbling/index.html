@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Bubbling</title>
+    <style>
+        body * {
+            margin: 10px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Event Bubbling</h1>
+    <hr>
+    <form onclick="alert('form')">Form
+        <div onclick="alert('div')">Div
+            <!-- 이벤트 버블링 막기 -->
+            <p onclick="event.stopPropagation()">P</p>
+        </div>
+    </form>
+<!--    이벤트 버블링 활용
+        <script>
+        const form = document.querySelector('form');
+        const div = document.querySelector('div');
+        const p = document.querySelector('p');
+        
+        // event.target ===> 실제 이벤트가 시작된 '타깃' 요소입니다.
+        // this (event.currentTarget) ===> 핸들러가 할당된 요소
+        
+
+        form.onclick = function(e){
+            e.target.style.backgroundColor = 'yellow';
+            
+            setTimeout(() =>{
+            alert("target= " + e.target.tagName + ", this= " + this.tagName)
+            e.target.style.backgroundColor = '';
+        }, 0);
+        };
+    </script> 
+-->
+</body>
+</html>
