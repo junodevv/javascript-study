@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Capturing</title>
+    <style>
+        body * {
+            margin: 10px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Event Capturing</h1>
+    <hr>
+    <form>Form
+        <div>Div
+            <p>P</p>
+        </div>
+    </form>
+
+    <script>
+    for(let element of document.querySelectorAll('*')){
+        element.addEventListener('click', e => alert(`캡쳐링: ${element.tagName}`), true);
+        element.addEventListener('click', e => alert(`버블링: ${element.tagName}`));
+    }
+    </script> 
+
+</body>
+</html>
