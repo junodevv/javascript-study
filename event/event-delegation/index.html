@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Delegation</title>
+    <style>
+        body * {
+            margin: 10px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Event Delegation</h1>
+    <hr>
+    <div id="buttons">
+        <button class="buttonClass">Click Me</button>
+        <button class="buttonClass">Click Me</button>
+    </div>
+
+
+    <script>
+/*      각 버튼에 이벤트 리스너를 등록한 경우 (새로 등록한 버튼은 이벤트리스너가 등록안됨)
+        const buttons = document.getElementsByClassName('buttonClass');
+
+        for(const button of buttons){
+            button.addEventListener('click', () => alert('clicked')); 
+        }
+*/
+
+        const buttons = document.querySelector('#buttons');
+        // 부모에 이벤트리스너를 등록하는경우
+        buttons.addEventListener('click', () => alert('clicked'));
+
+        const button = document.createElement('button');
+        button.setAttribute('class', 'buttonClass');
+        button.innerText = 'Click Me';
+        buttons.appendChild(button);
+        
+    </script> 
+</body>
+</html>
