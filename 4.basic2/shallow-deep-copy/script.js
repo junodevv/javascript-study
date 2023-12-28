@@ -78,3 +78,6 @@ console.log('newObject', newObject);
 aObject.cObject.a = 3;
 console.log('aObject', aObject);
 console.log('newObject', newObject);
+
+// 이외에 strucuredClone, lodash라이브러리를 이용할 수 있다.
+
