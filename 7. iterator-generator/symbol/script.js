@@ -48,3 +48,59 @@ console.log(sym4 === sym5); // true
 
 console.log(Symbol.keyFor(sym4));
 console.log(Symbol.keyFor(sym5));
+
+/* Symbol을 사용하는 경우 use case */
+// Symbol 안썼을때 
+/*
+const RED = 'red';
+const ORANGE = 'orange';
+const YELLOW = 'yellow';
+const BLUE = 'blue';
+const dog = 'blue';
+*/
+// Symbol을 쓸때
+const RED = Symbol('red');
+const ORANGE = Symbol('orange');
+const YELLOW = Symbol('yellow');
+const BLUE = Symbol('blue');
+const dog = 'blue';
+
+function getImportantLevel(color){
+    switch(color){
+        case RED:
+            return 'vary important';
+        case ORANGE:
+            return 'important';
+        case YELLOW:
+            return 'little important';
+        case BLUE: 
+            return 'not important';
+        default:
+            console.log(`${color} not included`);        
+    }
+}
+
+console.log(getImportantLevel(BLUE)); //not important
+console.log(getImportantLevel(dog)); //Symbol을 안썼을때: not important, 썻을때: not included
+
+const length = Symbol('length');// length를 출력하지 않게 하기 위해 Symbol을 사용
+class Car{
+    constructor(){
+        this[length] = 0;
+    }
+
+    add(brand, name){
+        this[brand] = name;
+        this[length]++;
+    }
+}
+
+let myCars = new Car();
+
+myCars.add('kia', 'EV6');
+myCars.add('hyundai', 'IONIQ5');
+myCars.add('genesis', 'g80');
+
+for(const car in myCars){
+    console.log(car, myCars[car]);
+}
