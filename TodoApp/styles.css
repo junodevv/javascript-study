@@ -48,7 +48,7 @@ main {
 	text-transform: uppercase;
 }
 
-.item {
+.todo {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -59,15 +59,15 @@ main {
 	margin-bottom: 1.5rem;
 }
 
-.item:last-of-type {
+.todo:last-of-type {
 	margin-bottom: 0;
 }
 
-.item input[type="checkbox"] {
+.todo input[type="checkbox"] {
 	margin-right: 1rem;
 }
 
-.item input[type="text"] {
+.todo input[type="text"] {
 	appearance: none;
 	background: none;
 	border: none;
@@ -79,20 +79,20 @@ main {
 	margin-right: 1rem;
 }
 
-.item input[type="text"]:not(:disabled) {
+.todo input[type="text"]:not(:disabled) {
 	border-bottom: 2px solid #fff;
 }
 
-.item.complete {
+.todo.complete {
 	opacity: 0.7;
 }
 
-.item.complete input[type="text"] {
+.todo.complete input[type="text"] {
 	text-decoration: line-through;
 }
 
-.item:hover,
-.item:focus-within {
+.todo:hover,
+.todo:focus-within {
 	outline: 2px solid #fff;
 }
 
