@@ -54,3 +54,63 @@ console.log('map', map);
 
 console.log(set[Symbol.iterator]().next());
 console.log(map[Symbol.iterator]());
+
+///////////////////
+/* Generator 함수 */
+///////////////////
+// yield: 제네레이터 함수를 일시적으로 정지시킨다., 일반함수의 return 과 비슷
+function* sayNumbers(){
+    yield 1;
+    yield 2;
+    yield 3;
+}
+// 제네레이터 함수의 반환이 제네레이터 이다.
+const number = sayNumbers();
+
+console.log(number.next());
+console.log(number.next());
+console.log(number.next());
+console.log(number.next());
+
+
+function* generatorFunction(){
+    yield 1;
+}
+
+const generator = generatorFunction();
+
+// 이 generatorrk Iterator이다.
+// generator = generator[Symbol.iterator]();
+
+console.log(generator.next());
+
+function* createIds(){
+    let index = 1;
+
+    while(true){
+        yield index++;
+    }
+}
+
+const gen = createIds();
+
+console.log(gen.next().value);
+console.log(gen.next().value);
+console.log(gen.next().value);
+console.log(gen.next().value);
+console.log(gen.return(10));
+
+function* generatorFunction2(){
+    yield* [1,2,3];
+    /* 이거랑 같은 의미
+    yield 1;
+    yield 2;
+    yield 3;
+    */ 
+}
+
+const generator2 = generatorFunction2();
+
+for( const number of generator2){
+    console.log(number);
+}
