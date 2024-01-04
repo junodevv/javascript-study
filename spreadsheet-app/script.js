@@ -67,6 +67,7 @@ function createCell(cell){
         cellEl.classList.add('header');
     }
     cellEl.onclick = () => handleCellClick(cell);
+    cellEl.onchange = (e) => handleOnChange(e.target.value, cell);
 
     return cellEl;
 }
@@ -91,9 +92,10 @@ function handleCellClick(cell){
     const rowHeaderEl = getElFromRowCol(rowHeader.row, rowHeader.column);
     columnHeaderEl.classList.add('active');
     rowHeaderEl.classList.add('active');
-    console.log('clicked cell', cell);
-    console.log('columnHeader', columnHeader);
-    console.log('rowHeader', rowHeader);
+    document.querySelector("#cell-status").innerHTML = cell.columnName + "" + cell.rowName;
+    // console.log('clicked cell', cell);
+    // console.log('columnHeader', columnHeader);
+    // console.log('rowHeader', rowHeader);
 }
 
 function getElFromRowCol(row, col){
@@ -111,3 +113,27 @@ function clearHeaderActiveStates(){
 }
 
 const exportBtn = document.querySelector('#export-btn');
+
+exportBtn.onclick = function(e){
+    let csv = "";
+    for(let i=0; i<spreadsheet.length; i++){
+        if(i===0) continue; // 첫쨰row(A~I)는 생략
+        csv += spreadsheet[i]
+                    .filter((item) => !item.isHeader) // 헤더가 아닌 것들만 골라서 새로운 배열로 반환
+                    .map((item) => item.data) // data 속성만 return 해주는 함수
+                    .join(",")  // 모든 배열안의 item들을 ","를 이용해서 join해준다.
+                    + "\r\n"; // spreadsheet의 row가 끝날때마가 개행을 해준다.
+    }
+    const csvObj = new Blob([csv]); // csv변수의 내용을 이용해 Blob 객체를 만든다.
+    /* 이렇게 생성된 Blob 객체는 파일 다운로드, 데이터 전송, 클라이언트 측 파일 생성 등의 웹 개발 작업에 활용된다. */
+    const csvUrl = URL.createObjectURL(csvObj); // Blob(csvObj) 객체로부터 URL을 생성해주는 함수
+    console.log('csv', csvUrl);
+    const a = document.createElement('a');
+    a.href = csvUrl;
+    a.download = "Spreadsheet File name.csv";
+    a.click();
+}
+
+function handleOnChange(data, cell){
+    cell.data = data;
+}
